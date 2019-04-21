@@ -1,0 +1,16 @@
+<%- include('../_layout/adminheader') %>
+
+<h2 style="margin-top:8%;" class="page-title">Edit Category</h2>
+<a href="/admin/categories" class="btn btn-primary"> Back to all Categories</a>
+
+<form method="post" action="/admin/categories/edit-category/<%= id %>" style="margin-top:4%;">
+    <div class="form-group">
+        <label for=""><b>Title</b></label>
+        <input type="text" class="form-control" name="title" value="<%= title %>" placeholder="Enter title" required/>
+
+        <input type="hidden" name="id" value="<%= id %>"/>
+        <button class="btn btn-danger" style="margin-top: 2%;">Submit</button>
+
+    </div>
+</form>
+<%- include('../_layout/adminfooter') %>
