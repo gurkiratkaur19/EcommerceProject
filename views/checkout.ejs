@@ -1,4 +1,4 @@
-<%- include _layout/header %>
+<% include _layouts/header %>
 
 <% if (typeof cart !== "undefined") { %>
 
@@ -47,7 +47,6 @@
     
 </table>
 
-
 <form class="pp" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 <input type="hidden" name="cmd" value="_cart">
 <input type="hidden" name="upload" value="1">
@@ -90,4 +89,4 @@ $(function() {
     
 </script>
 
-<%- include _layout/footer %>
+<% include _layouts/footer %>

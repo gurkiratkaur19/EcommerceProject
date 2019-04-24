@@ -6,6 +6,7 @@ var config= require('./config/database');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var fileUpload = require('express-fileupload');
+var passport = require('passport');
 
 /*MongoClient.connect(config.database, { useNewUrlParser: true }, function(err,db){
     if(err){
@@ -85,21 +86,30 @@ app.use(function (req, res, next) {
   next();
 });
 
+
+// Passport Config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get('*', function(req,res,next) {
     res.locals.cart = req.session.cart;
+    res.locals.user = req.user || null;
     next();
  });
   
 
 //Set routes
 var cart = require('./routes/cart.js');
+var users = require('./routes/users.js');
 var pages = require('./routes/page.js');
 var products = require('./routes/products.js');
 var adminPages = require('./routes/admin_pages.js');
 var categoryPages = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 
-app.use('/cart',cart);
+app.use('/users',users);
 app.use('/products',products);
 app.use('/admin/products',adminProducts);
 app.use('/admin/categories', categoryPages);
